@@ -1,0 +1,9 @@
+.vscode/**
+.vscode-test/**
+node_modules/**
+src/**
+.gitignore
+.eslintrc
+.eslintingore
+pnpm-lock.yaml
+tsconfig.json
