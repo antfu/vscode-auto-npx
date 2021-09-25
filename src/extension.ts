@@ -1,8 +1,8 @@
-import { window } from 'vscode'
+import { window, workspace } from 'vscode'
 
 const COMMAND = 'export PATH=$PWD/node_modules/.bin:$PATH'
 
-export async function activate() {
+function setup() {
   window.terminals.forEach(async(t) => {
     if (await t.processId)
       return
@@ -11,6 +11,13 @@ export async function activate() {
   window.onDidOpenTerminal((t) => {
     t.sendText(COMMAND)
   })
+}
+
+export async function activate() {
+  if (workspace.isTrusted)
+    setup()
+  else
+    workspace.onDidGrantWorkspaceTrust(setup)
 }
 
 export function deactivate() {}
