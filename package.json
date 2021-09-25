@@ -2,7 +2,7 @@
   "name": "auto-npx",
   "private": true,
   "displayName": "Auto NPX",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Auto resolving local Node.js binaries in VS Code terminal",
   "categories": [
     "Other"
