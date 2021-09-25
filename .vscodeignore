@@ -6,4 +6,5 @@ src/**
 .eslintrc
 .eslintingore
 pnpm-lock.yaml
+yarn.lock
 tsconfig.json

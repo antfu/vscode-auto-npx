@@ -4,7 +4,6 @@
 
 Auto resolving local Node.js binaries in VS Code terminal.
 
-
 ### Usage
 
 When you have packages installed locally, just call it without `npx`! (and you don't need to install them globally anymore)
