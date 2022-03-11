@@ -1,6 +1,11 @@
+import { platform } from 'os'
 import { window, workspace } from 'vscode'
 
-const COMMAND = 'export PATH=$PWD/node_modules/.bin:$PATH'
+const isWindows = platform() === 'win32'
+
+const COMMAND = isWindows
+  ? 'set Path=%Path%;node_modules\\.bin'
+  : 'export PATH=$PWD/node_modules/.bin:$PATH'
 
 function setup() {
   window.terminals.forEach(async(t) => {
