@@ -1,20 +1,30 @@
 import { platform } from 'os'
-import { window, workspace } from 'vscode'
+import { Terminal, TerminalOptions, window, workspace } from 'vscode'
 
 const isWindows = platform() === 'win32'
 
-const COMMAND = isWindows
-  ? 'set Path=%Path%;node_modules\\.bin'
-  : 'export PATH=$PWD/node_modules/.bin:$PATH'
+function sendCommand(t: Terminal) {
+  let COMMAND = ''
+  if (isWindows)
+    COMMAND = 'set Path=%Path%;node_modules\\.bin'
+
+  else if ((t.creationOptions as TerminalOptions).shellPath?.includes('fish'))
+    COMMAND = 'fish_add_path $PWD/node_modules/.bin'
+
+  else
+    COMMAND = 'export PATH=$PWD/node_modules/.bin:$PATH'
+
+  t.sendText(COMMAND)
+}
 
 function setup() {
   window.terminals.forEach(async(t) => {
     if (await t.processId)
       return
-    t.sendText(COMMAND)
+    sendCommand(t)
   })
   window.onDidOpenTerminal((t) => {
-    t.sendText(COMMAND)
+    sendCommand(t)
   })
 }
 
