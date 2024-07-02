@@ -4,7 +4,7 @@ import { window, workspace } from 'vscode'
 const isWindows = platform() === 'win32'
 
 const COMMAND = isWindows
-  ? '$env:PATH = "{0}\node_modules\.bin;{1}" -f (Resolve-Path .), $env:PATH'
+  ? '$env:PATH = "{0}\\node_modules\\.bin;{1}" -f (Resolve-Path .), $env:PATH'
   : 'export PATH=$PWD/node_modules/.bin:$PATH'
 
 function setup() {
