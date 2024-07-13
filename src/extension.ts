@@ -1,4 +1,4 @@
-import { platform } from 'os'
+import { platform } from 'node:os'
 import { window, workspace } from 'vscode'
 
 const isWindows = platform() === 'win32'
@@ -8,7 +8,7 @@ const COMMAND = isWindows
   : 'export PATH=$PWD/node_modules/.bin:$PATH'
 
 function setup() {
-  window.terminals.forEach(async(t) => {
+  window.terminals.forEach(async (t) => {
     if (await t.processId)
       return
     t.sendText(COMMAND)
